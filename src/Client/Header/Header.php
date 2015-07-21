@@ -44,7 +44,11 @@ class Header
         if (($verifier = $this->signature->getVerifier()) !== '') {
             $headerParams['oauth_verifier'] = $verifier;
         }
-
+        
+        if ($headerParams['oauth_token'] === '') {
+            unset($headerParams['oauth_token']);
+        }
+        
         $tempArray = array();
         ksort($headerParams);
 
