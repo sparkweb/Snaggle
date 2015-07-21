@@ -69,6 +69,10 @@ class HmacSha1 extends Signature implements SignatureInterface
             unset($oauthParams['oauth_verifier']);
         }
 
+        if ($oauthParams['oauth_token'] === '') {
+            unset($oauthParams['oauth_token']);
+        }
+        
         array_walk($oauthParams, function($value, $key) use (&$tempArray) {
             $tempArray[] = $key . '=' . rawurlencode($value);
         });
